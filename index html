@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .container { text-align: center; padding: 20px; }
+        .gif-space { font-size: 80px; margin-bottom: 20px; }
+        h1 { color: #ff4d6d; font-size: 24px; }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #noBtn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-space">🥺</div>
+        <h1 id="question">Will you be my Valentine?</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onclick="makeYesBigger()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let yesSize = 18;
+        let noClicks = 0;
+        const noTexts = [
+            "Are you sure?", 
+            "Really sure??", 
+            "Think again!", 
+            "Last chance!", 
+            "Surely not?", 
+            "You're breaking my heart ;("
+        ];
+
+        function makeYesBigger() {
+            // Increase font size of Yes button
+            yesSize += 30; 
+            document.getElementById('yesBtn').style.fontSize = yesSize + "px";
+            document.getElementById('yesBtn').style.padding = (yesSize/2) + "px " + yesSize + "px";
+            
+            // Change No button text
+            if (noClicks < noTexts.length) {
+                document.getElementById('noBtn').innerText = noTexts[noClicks];
+            } else {
+                document.getElementById('noBtn').innerText = "Fine, I'll stop... Joking! Click Yes!";
+            }
+            noClicks++;
+        }
+
+        function celebrate() {
+            document.body.innerHTML = `
+                <div style="text-align:center;">
+                    <div style="font-size:100px;">💖</div>
+                    <h1 style="color:#ff4d6d; font-size:40px;">YAY! See you soon!</h1>
+                </div>
+            `;
+            document.body.style.backgroundColor = "#ffccd5";
+        }
+    </script>
+</body>
+</html>
